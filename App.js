@@ -16,8 +16,9 @@ export default function App() {
         onPress={() => setVisible(true)}>
         Awesome Button
       </Button>
-      <Text>Snackbar is {visible ? 'Show' : 'Hidden'} and Undo was {undo ? 'pressed' : 'not pressed'} </Text>
-      <Text>{someText}</Text>
+      
+      <Text style={styles.text}>Snackbar is {visible ? 'Show' : 'Hidden'} and Undo was {undo ? 'pressed' : 'not pressed'}</Text>
+      <Text style={[styles.text, styles.blueText]}>{someText}</Text>
 
       <Snackbar
         visible={visible}
@@ -45,5 +46,15 @@ const styles = StyleSheet.create({
   button: {
     width: 200,
     alignSelf: "center"
+  },
+  text: {
+    alignSelf: "center",
+    fontSize: 12,
+    color: "green",
+    top: 12,
+    padding: 4
+  },
+  blueText: {
+    color: "blue"
   }
 });
