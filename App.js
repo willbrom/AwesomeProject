@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { Snackbar, Button, Card, Title, Paragraph } from "react-native-paper";
+import { Snackbar, Button, Card, Title, Subheading, Paragraph } from "react-native-paper";
 
 export default function App() {
   const [visible, setVisible] = useState(false);
@@ -29,7 +29,8 @@ export default function App() {
             onPress={() => setCardPressed(!cardPressed)}>
             <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
             <Card.Content>
-              <Title>Awesome {item} Title {cardPressed ? 'pressed' : 'unpressed'} </Title>
+              <Title>Awesome Title {cardPressed ? 'pressed' : 'unpressed'} </Title>
+              <Subheading>{item}</Subheading>
               <Paragraph>{cardPara}</Paragraph>
             </Card.Content>
             <Card.Actions style={styles.cardAction}>
