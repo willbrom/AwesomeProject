@@ -2,14 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { Snackbar, Button, Card, Title, Subheading, Paragraph } from "react-native-paper";
+import { Snackbar, Card, Title, Button, Subheading, Paragraph } from "react-native-paper";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const App = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
   const [cardPressed, setCardPressed] = useState(false);
 
@@ -56,13 +56,51 @@ const App = () => {
         onDismiss={() => setVisible(false)}
         action={{
           label: 'Undo',
-          onPress: () => {}
+          onPress: () => { navigation.navigate('Home') }
         }}>
         This is an Awesome Snackbar
       </Snackbar>
 
       <StatusBar style="auto" />
     </View>
+  );
+}
+
+const HomeScreen = ({ navigation }) => {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Home Screen</Text>
+      <Button
+        mode="outlined"
+        onPress={() => navigation.navigate('Detail')}>
+        Go to Details
+      </Button>
+    </View>
+  );
+}
+
+const DetailScreen = ({ navigation }) => {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Detail Screen</Text>
+      <Button
+        mode="outlined"
+        onPress={() => navigation.popToTop()}>
+        Go to Top
+      </Button>
+    </View>
+  );
+}
+
+const Main = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="App">
+        <Stack.Screen name="App" component={App} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -99,4 +137,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+export default Main;
