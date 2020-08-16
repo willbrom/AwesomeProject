@@ -1,14 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Snackbar, Button, Card, Title, Subheading, Paragraph } from "react-native-paper";
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   const [visible, setVisible] = useState(false);
   const [cardPressed, setCardPressed] = useState(false);
 
   const cardPara = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel ante ut tortor tristique hendrerit in sed mi. Aenean posuere.";
-  const testList = ['First', 'Second', 'Third'];
+  const testList = [{ key: 'First' }, { key: 'Second'} , { key: 'Third'}];
 
   return (
     <View style={styles.container}>
@@ -30,7 +36,7 @@ export default function App() {
             <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
             <Card.Content>
               <Title>Awesome Title {cardPressed ? 'pressed' : 'unpressed'} </Title>
-              <Subheading>{item}</Subheading>
+              <Subheading>{item.key}</Subheading>
               <Paragraph>{cardPara}</Paragraph>
             </Card.Content>
             <Card.Actions style={styles.cardAction}>
@@ -92,3 +98,5 @@ const styles = StyleSheet.create({
   cardList: {
   }
 });
+
+export default App;
