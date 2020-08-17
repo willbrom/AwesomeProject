@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { Snackbar, Card, Title, Button, Subheading, Paragraph } from "react-native-paper";
+import { Snackbar, Card, Title, Button, Subheading, Paragraph, Searchbar } from "react-native-paper";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,6 +18,10 @@ const App = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Searchbar 
+        style={styles.searchbar}
+        placeholder="Search" />
+
       <Button 
         style={styles.button}
         mode="contained"
@@ -56,7 +60,7 @@ const App = ({ navigation }) => {
         onDismiss={() => setVisible(false)}
         action={{
           label: 'Undo',
-          onPress: () => { navigation.navigate('Home') }
+          onPress: () => { navigation.navigate('Home', {id: 200}) }
         }}>
         This is an Awesome Snackbar
       </Snackbar>
@@ -66,10 +70,13 @@ const App = ({ navigation }) => {
   );
 }
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
+  const { id } = route.params;
+  
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Home Screen</Text>
+      <Text>id: {id}</Text>
       <Button
         mode="outlined"
         onPress={() => navigation.navigate('Detail')}>
@@ -107,11 +114,11 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    paddingTop: 22
+    alignItems: "center"
   },
   button: {
     width: 200,
+    marginVertical: 10
   },
   text: {
     fontSize: 12,
@@ -134,6 +141,9 @@ const styles = StyleSheet.create({
     paddingEnd: 12,
   },
   cardList: {
+  },
+  searchbar: {
+
   }
 });
 
