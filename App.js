@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { Snackbar, Card, Title, Button, Subheading, Paragraph, Searchbar } from "react-native-paper";
+import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
+import { Snackbar, Card, Title, Button, Subheading, Paragraph, Searchbar, Banner } from "react-native-paper";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,7 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 const App = ({ navigation }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [cardPressed, setCardPressed] = useState(false);
 
   const cardPara = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel ante ut tortor tristique hendrerit in sed mi. Aenean posuere.";
@@ -18,6 +18,32 @@ const App = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Banner
+        visible={visible}
+        actions={[
+          {
+            label: 'Fix it',
+            onPress: () => setVisible(false),
+          },
+          {
+            label: 'Learn more',
+            onPress: () => setVisible(false),
+          },
+        ]}
+        icon={({size}) => (
+          <Image
+            source={{
+              uri: 'https://avatars3.githubusercontent.com/u/17571969?s=400&v=4',
+            }}
+            style={{
+              width: size,
+              height: size,
+            }}
+          />
+        )}>
+        There was a problem processing a transaction on your credit card.
+      </Banner>
+
       <Searchbar 
         style={styles.searchbar}
         placeholder="Search" />
@@ -113,8 +139,7 @@ const Main = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center"
+    flex: 1
   },
   button: {
     width: 200,
