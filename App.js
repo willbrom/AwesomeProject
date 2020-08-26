@@ -2,7 +2,14 @@ import { StatusBar } from "expo-status-bar";
 
 import React, { useState } from "react";
 
-import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  Dimensions,
+} from "react-native";
 import {
   Snackbar,
   Card,
@@ -18,10 +25,13 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+const SCREEN_WIDTH = Dimensions.get("window").width;
 const Stack = createStackNavigator();
 
 const FavouriteRoute = () => {
   const [visible, setVisible] = useState(true);
+  const [textVisible, setTextVisible] = useState(false);
+
   return (
     <View style={{ flex: 1 }}>
       <Banner
@@ -61,6 +71,21 @@ const FavouriteRoute = () => {
       >
         Show Banner
       </Button>
+
+      <View style={styles.albumContainer}>
+        <Button
+          style={styles.albumButton}
+          mode="outlined"
+          onPress={() => setTextVisible(!textVisible)}
+        >
+          Awesome Button
+        </Button>
+        {textVisible && (
+          <Text style={styles.albumText}>
+            “Never laugh at live dragons.” ― J.R.R. Tolkien
+          </Text>
+        )}
+      </View>
     </View>
   );
 };
@@ -107,23 +132,37 @@ const HomeRoute = () => {
 };
 
 const AlbumRoute = () => {
-  const [textVisible, setTextVisible] = useState(false);
+  const data = [
+    { id: 0, src: "https://picsum.photos/200" },
+    { id: 1, src: "https://picsum.photos/200" },
+    { id: 2, src: "https://picsum.photos/200" },
+    { id: 3, src: "https://picsum.photos/200" },
+    { id: 4, src: "https://picsum.photos/200" },
+    { id: 5, src: "https://picsum.photos/200" },
+    { id: 6, src: "https://picsum.photos/200" },
+    { id: 7, src: "https://picsum.photos/200" },
+    { id: 8, src: "https://picsum.photos/200" },
+    { id: 9, src: "https://picsum.photos/200" },
+    { id: 10, src: "https://picsum.photos/200" },
+    { id: 11, src: "https://picsum.photos/200" },
+  ];
 
   return (
-    <View style={styles.albumContainer}>
-      <Button
-        style={styles.albumButton}
-        mode="outlined"
-        onPress={() => setTextVisible(!textVisible)}
-      >
-        Awesome Button
-      </Button>
-      {textVisible && (
-        <Text style={styles.albumText}>
-          “Never laugh at live dragons.” ― J.R.R. Tolkien
-        </Text>
+    <FlatList
+      style={{}}
+      numColumns={2}
+      data={data}
+      renderItem={({ item }) => (
+        <Image
+          style={{
+            height: 150,
+            width: SCREEN_WIDTH / 2 - 4,
+            margin: 2,
+          }}
+          source={{ uri: item.src }}
+        />
       )}
-    </View>
+    />
   );
 };
 
