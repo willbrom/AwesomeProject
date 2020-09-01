@@ -9,6 +9,9 @@ import {
   FlatList,
   Image,
   Dimensions,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
 import {
   Snackbar,
