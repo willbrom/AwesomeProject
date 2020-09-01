@@ -31,65 +31,118 @@ import { createStackNavigator } from "@react-navigation/stack";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const Stack = createStackNavigator();
 
+const CustomeButton = (props) => {
+  return (
+    <TouchableHighlight
+      style={styles.touchableHighlight}
+      underlayColor="darkseagreen"
+      onPressIn={() => props.showTextCallback(true)}
+      onPressOut={() => props.showTextCallback(false)}
+    >
+      <View style={{}}>
+        <Text
+          style={{ color: props.color, letterSpacing: 2, fontWeight: "bold" }}
+        >
+          {props.text.toUpperCase()}
+        </Text>
+      </View>
+    </TouchableHighlight>
+  );
+};
+
 const FavouriteRoute = () => {
   const [visible, setVisible] = useState(true);
   const [textVisible, setTextVisible] = useState(false);
+  const [quoteVisible, setQuoteVisible] = useState(false);
+  const [changingText, setChangingText] = useState(
+    "This changes with the search value"
+  );
+
+  let searchbarRef = React.createRef();
+
+  const fantasyQuote =
+    "“The moment you doubt whether you can fly, you cease for ever to be able to do it.” ― J. M. Barrie, Peter Pan";
 
   return (
-    <View style={{ flex: 1 }}>
-      <Banner
-        visible={visible}
-        actions={[
-          {
-            label: "Fix it",
-            onPress: () => setVisible(false),
-          },
-          {
-            label: "Learn more",
-            onPress: () => setVisible(false),
-          },
-        ]}
-        icon={({ size }) => (
-          <Image
-            source={{
-              uri:
-                "https://avatars3.githubusercontent.com/u/17571969?s=400&v=4",
-            }}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        )}
-      >
-        “It's a dangerous business, Frodo, going out your door. You step onto
-        the road, and if you don't keep your feet, there's no knowing where you
-        might be swept off to.” ― J.R.R. Tolkien, The Lord of the Rings
-      </Banner>
-      <Searchbar style={styles.searchbar} placeholder="Search" />
-      <Button
-        style={{ marginTop: 10, width: 150, alignSelf: "center" }}
-        mode="text"
-        onPress={() => setVisible(true)}
-      >
-        Show Banner
-      </Button>
-
-      <View style={styles.albumContainer}>
-        <Button
-          style={styles.albumButton}
-          mode="outlined"
-          onPress={() => setTextVisible(!textVisible)}
+    <TouchableHighlight
+      style={{ flex: 1 }}
+      underlayColor="transparent"
+      onPress={() => searchbarRef.blur()}
+    >
+      <View>
+        <Banner
+          visible={visible}
+          actions={[
+            {
+              label: "Fix it",
+              onPress: () => setVisible(false),
+            },
+            {
+              label: "Learn more",
+              onPress: () => setVisible(false),
+            },
+          ]}
+          icon={({ size }) => (
+            <Image
+              source={{
+                uri:
+                  "https://avatars3.githubusercontent.com/u/17571969?s=400&v=4",
+              }}
+              style={{
+                width: size,
+                height: size,
+              }}
+            />
+          )}
         >
-          Awesome Button
+          “It's a dangerous business, Frodo, going out your door. You step onto
+          the road, and if you don't keep your feet, there's no knowing where
+          you might be swept off to.” ― J.R.R. Tolkien, The Lord of the Rings
+        </Banner>
+        <Searchbar
+          style={styles.searchbar}
+          placeholder="Search"
+          ref={(r) => (searchbarRef = r)}
+          onChangeText={(q) => setChangingText(q)}
+        />
+        <Button
+          style={{ marginTop: 10, width: 150, alignSelf: "center" }}
+          mode="text"
+          onPress={() => setVisible(true)}
+        >
+          Show Banner
         </Button>
-        {textVisible && (
-          <Text style={styles.albumText}>
-            “Never laugh at live dragons.” ― J.R.R. Tolkien
-          </Text>
-        )}
+
+        <View style={styles.favButtons}>
+          <Button
+            style={styles.albumButton}
+            mode="outlined"
+            onPress={() => setTextVisible(!textVisible)}
+          >
+            Awesome Button
+          </Button>
+          {textVisible && (
+            <Text style={styles.albumText}>
+              “Never laugh at live dragons.” ― J.R.R. Tolkien
+            </Text>
+          )}
+        </View>
+
+        <CustomeButton
+          text="Fantasy Quote"
+          color="green"
+          showTextCallback={setQuoteVisible}
+        />
+
+        <Text style={{ marginHorizontal: 10 }}>
+          {quoteVisible ? fantasyQuote : ""}
+        </Text>
+
+        <Text style={{ marginVertical: 10, marginHorizontal: 10 }}>
+          {changingText}
+        </Text>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
@@ -255,7 +308,7 @@ const styles = StyleSheet.create({
   bottomNavigation: {
     flex: 1,
   },
-  albumContainer: {
+  favButtons: {
     flexDirection: "row",
   },
   albumButton: {
@@ -287,6 +340,16 @@ const styles = StyleSheet.create({
   },
   cardList: {},
   searchbar: {},
+  touchableHighlight: {
+    height: 38,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "lightgray",
+    borderRadius: 7,
+    marginHorizontal: 20,
+    marginVertical: 5,
+  },
 });
 
 export default Main;
