@@ -187,43 +187,8 @@ const HomeRoute = () => {
   );
 };
 
-const AlbumRoute = () => {
-  const data = [
-    { id: 0, src: "https://picsum.photos/200" },
-    { id: 1, src: "https://picsum.photos/200" },
-    { id: 2, src: "https://picsum.photos/200" },
-    { id: 3, src: "https://picsum.photos/200" },
-    { id: 4, src: "https://picsum.photos/200" },
-    { id: 5, src: "https://picsum.photos/200" },
-    { id: 6, src: "https://picsum.photos/200" },
-    { id: 7, src: "https://picsum.photos/200" },
-    { id: 8, src: "https://picsum.photos/200" },
-    { id: 9, src: "https://picsum.photos/200" },
-    { id: 10, src: "https://picsum.photos/200" },
-    { id: 11, src: "https://picsum.photos/200" },
-  ];
-
-  return (
-    <FlatList
-      style={{}}
-      numColumns={2}
-      data={data}
-      renderItem={({ item }) => (
-        <Image
-          style={{
-            height: 150,
-            width: SCREEN_WIDTH / 2 - 4,
-            margin: 2,
-          }}
-          source={{ uri: item.src }}
-        />
-      )}
-    />
-  );
-};
-
 const App = ({ navigation }) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "home", title: "Home", icon: "home" },
@@ -289,6 +254,72 @@ const DetailScreen = ({ navigation }) => {
   );
 };
 
+const Album = ({ navigation }) => {
+  const data = [
+    { id: 1, title: "First", src: "https://picsum.photos/200" },
+    { id: 0, title: "Second", src: "https://picsum.photos/200" },
+    { id: 2, title: "Third", src: "https://picsum.photos/200" },
+    { id: 3, title: "Fourth", src: "https://picsum.photos/200" },
+    { id: 4, title: "Fifth", src: "https://picsum.photos/200" },
+    { id: 5, title: "Sixth", src: "https://picsum.photos/200" },
+    { id: 6, title: "Seventh", src: "https://picsum.photos/200" },
+    { id: 7, title: "Eighth", src: "https://picsum.photos/200" },
+    { id: 8, title: "Ninth", src: "https://picsum.photos/200" },
+    { id: 9, title: "Tenth", src: "https://picsum.photos/200" },
+    { id: 10, title: "Eleventh", src: "https://picsum.photos/200" },
+    { id: 11, title: "Twelfth", src: "https://picsum.photos/200" },
+  ];
+
+  return (
+    <FlatList
+      style={{}}
+      numColumns={2}
+      data={data}
+      renderItem={({ item }) => (
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={() => {
+            console.log(item.id);
+            navigation.navigate("ImageDetail", { title: item.title });
+          }}
+        >
+          <Image
+            style={{
+              height: 150,
+              width: SCREEN_WIDTH / 2 - 4,
+              margin: 2,
+            }}
+            source={{ uri: item.src }}
+          />
+        </TouchableHighlight>
+      )}
+    />
+  );
+};
+
+const ImageDetail = ({ route, navigation }) => {
+  return <Text>Here comes image details</Text>;
+};
+
+const AlbumRoute = (props) => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Album">
+        <Stack.Screen
+          name="Album"
+          component={Album}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ImageDetail"
+          component={ImageDetail}
+          options={({ route }) => ({ title: route.params.title })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
 const Main = () => {
   return (
     <NavigationContainer>
@@ -304,6 +335,7 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 20,
   },
   bottomNavigation: {
     flex: 1,
@@ -352,4 +384,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default App;
