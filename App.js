@@ -268,7 +268,11 @@ const Album = ({ navigation }) => {
           underlayColor="transparent"
           onPress={() => {
             console.log(item.id);
-            navigation.navigate("ImageDetail", { title: item.title });
+            navigation.navigate("ImageDetail", {
+              title: item.title,
+              detail: item.detail,
+              src: item.src,
+            });
           }}
         >
           <Image
@@ -286,7 +290,25 @@ const Album = ({ navigation }) => {
 };
 
 const ImageDetail = ({ route, navigation }) => {
-  return <Text>Here comes image details</Text>;
+  const { detail, src } = route.params;
+  return (
+    <View
+      style={{
+        flex: 1,
+        padding: 12,
+        alignItems: "center",
+      }}
+    >
+      <Image
+        style={{
+          height: 300,
+          width: 300,
+        }}
+        source={{ uri: src }}
+      />
+      <Paragraph style={{}}>{detail}</Paragraph>
+    </View>
+  );
 };
 
 const AlbumRoute = (props) => {
