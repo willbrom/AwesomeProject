@@ -1,5 +1,4 @@
 import { StatusBar } from "expo-status-bar";
-
 import React, { useState } from "react";
 
 import {
@@ -30,6 +29,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const Stack = createStackNavigator();
+
+const ALBUM_DATA = require("./data/album.json");
 
 const CustomeButton = (props) => {
   return (
@@ -255,20 +256,7 @@ const DetailScreen = ({ navigation }) => {
 };
 
 const Album = ({ navigation }) => {
-  const data = [
-    { id: 1, title: "First", src: "https://picsum.photos/200" },
-    { id: 0, title: "Second", src: "https://picsum.photos/200" },
-    { id: 2, title: "Third", src: "https://picsum.photos/200" },
-    { id: 3, title: "Fourth", src: "https://picsum.photos/200" },
-    { id: 4, title: "Fifth", src: "https://picsum.photos/200" },
-    { id: 5, title: "Sixth", src: "https://picsum.photos/200" },
-    { id: 6, title: "Seventh", src: "https://picsum.photos/200" },
-    { id: 7, title: "Eighth", src: "https://picsum.photos/200" },
-    { id: 8, title: "Ninth", src: "https://picsum.photos/200" },
-    { id: 9, title: "Tenth", src: "https://picsum.photos/200" },
-    { id: 10, title: "Eleventh", src: "https://picsum.photos/200" },
-    { id: 11, title: "Twelfth", src: "https://picsum.photos/200" },
-  ];
+  const data = ALBUM_DATA.data;
 
   return (
     <FlatList
