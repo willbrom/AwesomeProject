@@ -3,61 +3,73 @@
     {
       "id": 0,
       "title": "First",
+      "detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 1,
       "title": "Second",
+      "detail": "Donec id aliquam erat, quis iaculis leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 2,
       "title": "Third",
+      "detail": "Suspendisse accumsan quis nunc eget eleifend.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 3,
       "title": "Fourth",
+      "detail": "Nam sagittis mauris pretium neque faucibus, vitae consequat nunc cursus. Integer ut auctor risus.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 4,
       "title": "Fifth",
+      "detail": "Nunc non molestie neque.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 5,
       "title": "Sixth",
+      "detail": "Donec eu dui euismod, porttitor lacus et, eleifend magna. Morbi egestas magna leo, ac accumsan enim volutpat non.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 6,
       "title": "Seventh",
+      "detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id aliquam erat, quis iaculis leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 7,
       "title": "Eighth",
+      "detail": "Integer iaculis libero nec elit faucibus suscipit.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 8,
       "title": "Ninth",
+      "detail": "Curabitur metus odio, sollicitudin at sagittis non, congue id odio.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 9,
       "title": "Tenth",
+      "detail": "Nunc id fringilla odio.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 10,
       "title": "Eleventh",
+      "detail": "Ut tempor mauris nulla, ut interdum quam malesuada bibendum. Sed id consequat tellus, quis pellentesque massa. Vestibulum molestie pellentesque libero ut varius. Ut sed luctus dolor.",
       "src": "https://picsum.photos/200"
     },
     {
       "id": 11,
       "title": "Twelfth",
+      "detail": "Ut sed luctus dolor. Nunc id fringilla odio.",
       "src": "https://picsum.photos/200"
     }
   ]
